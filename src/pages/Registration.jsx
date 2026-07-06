@@ -16,6 +16,13 @@ export default function Registration() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
+  const [ touched, setTouched ] = useState({
+    name: false,
+    description: false,
+    price: false,
+    tags: false,
+  });
+
   const { errors, isValid } = useProductValidation({
     name,
     description,
@@ -27,7 +34,9 @@ export default function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValid) return;
+    if (!isValid) {
+      return;
+    }
     try {
       const created = await createProduct({
         name,
@@ -35,7 +44,7 @@ export default function Registration() {
         price: Number(price),
         tags,
       });
-      navigate(`/items/${created.id}`);
+      navigate(`/items/${created._id}`);
     } catch (err) {
       alert("상품 등록에 실패했습니다.");
     }
@@ -46,7 +55,6 @@ export default function Registration() {
     e.preventDefault();
     const value = tagInput.trim();
     if (!value) return;
-    if (value.length > 5) return;
     if (tags.includes(value)) return;
     setTags([...tags, value]);
     setTagInput("");
@@ -86,7 +94,11 @@ export default function Registration() {
               placeholder="상품 소개를 입력해주세요"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              className={errors.description ? "error" : ""}
             />
+            {errors.description && (
+              <p className="error-message">{errors.description}</p>
+            )}
           </div>
 
           <div className="input-group">
@@ -96,7 +108,9 @@ export default function Registration() {
               placeholder="판매 가격을 입력해주세요"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              className={errors.price ? "error" : ""}
             />
+            {errors.price && <p className="error-message">{errors.price}</p>}
           </div>
 
           <div className="input-group">
@@ -108,6 +122,7 @@ export default function Registration() {
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyDown={handleTagKeyDown}
+                className={errors.tags ? "error" : ""}
               />
               <div className="tag-list">
                 {tags.map((tag) => (
@@ -120,6 +135,7 @@ export default function Registration() {
                 ))}
               </div>
             </div>
+            {errors.tags && <p className="error-message">{errors.tags}</p>}
           </div>
         </form>
       </main>

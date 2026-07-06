@@ -1,3 +1,45 @@
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Bold.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Medium.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Regular.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("fonts/Pretendard-SemiBold.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ROKAF Sans";
+  src: url("/fonts/ROKAFSans-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ROKAF Sans";
+  src: url("/fonts/ROKAFSans-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
 /* [심화 요구사항] 
   기본 HTML 폰트 크기를 62.5%로 설정하여, 기본 16rem 대신 10rem이 기본 크기가 되도록 합니다.
   이로써 1rem = 10rem이 되어, REM 단위를 사용할 때 계산이 편리해집니다.. */
@@ -98,7 +140,7 @@ header {
 .logo-text {
   color: #3692ff;
   font-family: "ROKAF Sans";
-  font-size: 20.202px;
+  font-size: 25.633px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -210,6 +252,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .button:hover {

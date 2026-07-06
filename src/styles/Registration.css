@@ -36,7 +36,7 @@
   line-height: 32px; /* 160% */
 }
 
-/* 등록 버튼*/
+/* 등록 버튼 - 활성화(파란색) */
 .submit-button {
   display: flex;
   height: 42px;
@@ -45,6 +45,21 @@
   align-items: center;
   gap: 10px;
 
+  border-radius: 8px;
+  background: var(--Primary-100, #3692ff);
+
+  color: var(--Cool-Gray-100, #f3f4f6);
+
+  /* pretendard/lg-16px-semibold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+}
+
+/* 등록 버튼 - 비활성화(회색) */
+.submit-button:disabled {
   border-radius: 8px;
   background: var(--Cool-Gray-400, #9ca3af);
 }
@@ -84,6 +99,15 @@
   border-radius: 12px;
   background: var(--Cool-Gray-100, #f3f4f6);
   border: none;
+
+  color: var(--Secondary-800, #1f2937);
+
+  /* pretendard/lg-16px-regular */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
 }
 
 /* 상품명, 판매가격, 태그 인풋 글씨 */
@@ -112,6 +136,15 @@
   border-radius: 12px;
   background: var(--Cool-Gray-100, #f3f4f6);
   border: none;
+
+  color: var(--Secondary-800, #1f2937);
+
+  /* pretendard/lg-16px-regular */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
 }
 
 /* 상품 소개 인풋 글씨 */

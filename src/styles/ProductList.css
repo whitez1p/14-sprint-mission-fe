@@ -32,7 +32,7 @@
   gap: 12px;
 }
 
-/*  */
+/* 회색창(돋보기 + 검색 입력창) */
 .search-box {
   display: flex;
   align-items: center;
@@ -41,7 +41,6 @@
   width: 325px;
   height: 42px;
   padding: 9px 20px 9px 16px;
-
   border-radius: 12px;
   background: #f3f4f6;
 }
@@ -58,6 +57,15 @@ input {
   border: none;
   background: transparent;
   outline: none;
+
+  color: var(--Secondary-400, #9ca3af);
+
+  /* pretendard/lg-16px-regular */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
 }
 
 /* 상품 등록하기 버튼 */
@@ -71,6 +79,15 @@ input {
 
   border-radius: 8px;
   background: var(--Primary-100, #3692ff);
+
+  color: var(--Cool-Gray-100, #f3f4f6);
+
+  /* pretendard/lg-16px-semibold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
 }
 
 .sort-wrapper {
@@ -152,6 +169,15 @@ input {
   row-gap: 40px;
   width: 100%;
   margin-bottom: 40px;
+
+  color: var(--Secondary-800, #1f2937);
+
+  /* pretendard/lg-16px-regular */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
 }
 
 /* 판매 중인 상품 카드들 전체 */

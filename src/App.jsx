@@ -19,7 +19,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/registration" element={<Registration />} />
-      <Route path="/itemdetail" element={<ItemDetail />}  />
+      <Route path="/items/:id" element={<ItemDetail />}  />
     </Routes>
   );
 }

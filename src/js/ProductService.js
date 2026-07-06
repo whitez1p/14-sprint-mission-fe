@@ -1,4 +1,4 @@
-const BASE_URL = "https://panda-market-api.vercel.app";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 export async function getProductList({
   page = 1,
@@ -39,5 +39,14 @@ export async function getProductList({
       throw new Error("상품 등록 실패");                                                                              
     }
 
+    return response.json();
+  }
+
+  export async function likeProduct(productId) {
+    const response = await fetch(`${BASE_URL}/products/${productId}/favorite`, { method: "PATCH" ,});
+
+    if (!response.ok) {
+      throw new Error("상품 좋아요 실패");
+    }
     return response.json();
   }

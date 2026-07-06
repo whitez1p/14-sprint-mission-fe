@@ -1,4 +1,3 @@
-import BestProducts from "../pages/BestProducts";
 import ProductList from "../pages/ProductList";
 
 import { getArticleList } from "../js/ArticleService";
@@ -12,7 +11,6 @@ export default function Items() {
       <>
       <Header />
       <main className="wrapper item-page">
-        <BestProducts />
         <ProductList />
       </main>
     <Footer />

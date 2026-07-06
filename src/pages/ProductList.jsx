@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProductList } from "../js/ProductService";
+import { getProductList, likeProduct } from "../js/ProductService";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 
 import "../styles/ProductList.css";
@@ -37,29 +37,41 @@ export default function ProductList() {
       setIsLoading(true);
       setError(null);
       try {
-      const data = await getProductList({
-        page,
-        pageSize,
-        orderBy,
-        keyword: debouncedKeyword,
-      });
-      console.log(data.list);
+        const data = await getProductList({
+          page,
+          pageSize,
+          orderBy,
+          keyword: debouncedKeyword,
+        });
+        console.log(data.list);
 
-      setProducts(data.list);
-      SetTotalCount(data.totalCount);
-    }catch (e) {
-      setError("상품을 불러오는데 실패했습니다.");
+        setProducts(data.list);
+        SetTotalCount(data.totalCount);
+      } catch (e) {
+        setError("상품을 불러오는데 실패했습니다.");
+      } finally {
+        setIsLoading(false);
+      }
     }
-    finally {
-      setIsLoading(false);
-    }
-  }
     loadProductLists();
   }, [orderBy, debouncedKeyword, pageSize, page]);
 
   useEffect(() => {
     setPage(1);
   }, [orderBy, debouncedKeyword, pageSize]);
+
+  const handleLike = async (productId) => {
+    try {
+      const updated = await likeProduct(productId);
+      setProducts((prev) =>
+        prev.map((p) =>
+          p._id === productId ? { ...p, favoriteCount: updated.favoriteCount } : p
+        )
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <section className="products-list">
@@ -82,7 +94,12 @@ export default function ProductList() {
               />
             </div>
 
-            <button className="register-button" onClick={() => navigate("/registration")}>상품 등록하기</button>
+            <button
+              className="register-button"
+              onClick={() => navigate("/registration")}
+            >
+              상품 등록하기
+            </button>
           </div>
 
           <div className="sort-wrapper">
@@ -102,16 +119,6 @@ export default function ProductList() {
                 >
                   최신순
                 </li>
-
-                <li
-                  onClick={() => {
-                    setSort("좋아요순");
-                    setOrderBy("favorite");
-                    setIsOpen(false);
-                  }}
-                >
-                  좋아요순
-                </li>
               </ul>
             )}
           </div>
@@ -122,9 +129,9 @@ export default function ProductList() {
       {error && <p>{error}</p>}
       <div className="products-grid">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
+          <div key={product._id} className="product-card">
             <img
-              src={product.images?.[0]}
+              src={product.images?.[0] || "/images/logo/default-product.png"}
               alt={product.name}
               className="product-image"
             />
@@ -137,7 +144,7 @@ export default function ProductList() {
               </strong>
 
               <div className="product-favorite">
-                <img src="/images/icons/ic_heart.svg" alt="좋아요" />
+                <img src="/images/icons/ic_heart.svg" alt="좋아요" onClick={() => handleLike(product._id)} style={{ cursor: "pointer" }} />
                 <span>{product.favoriteCount}</span>
               </div>
             </div>
@@ -149,13 +156,20 @@ export default function ProductList() {
           &lt;
         </button>
 
-        {Array.from({ length: totalPages }, (_, i) => i + 1).filter((p) => {
-          const start = Math.floor((page - 1) / 5) * 5 + 1;
-          return p >= start && p < start + 5;
-        })
-        .map((p) => (
-          <button key={p} onClick={() => setPage(p)} className={p === page ? "active" : ""}>{p}</button>
-        ))}
+        {Array.from({ length: totalPages }, (_, i) => i + 1)
+          .filter((p) => {
+            const start = Math.floor((page - 1) / 5) * 5 + 1;
+            return p >= start && p < start + 5;
+          })
+          .map((p) => (
+            <button
+              key={p}
+              onClick={() => setPage(p)}
+              className={p === page ? "active" : ""}
+            >
+              {p}
+            </button>
+          ))}
         <button
           onClick={() => setPage(page + 1)}
           disabled={page === totalPages}

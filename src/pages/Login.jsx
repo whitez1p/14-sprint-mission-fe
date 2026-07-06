@@ -6,6 +6,7 @@ import "../styles/Auth.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +28,7 @@ export default function Login() {
     <main className="auth-container">
       <div className="logo-home-button-wrapper">
         <a href="/">
-          <img src="../images/logo/logo.svg" alt="판다마켓 홈" width="396" />
+          <img src="/images/logo/logo.svg" alt="판다마켓 홈" width="396" />
         </a>
       </div>
 
@@ -60,7 +61,7 @@ export default function Login() {
               aria-label="비밀번호 보기"
             >
               <img
-                src="../images/icons/eye-invisible.svg"
+                src="/images/icons/eye-invisible.svg"
                 alt="비밀번호 숨김 상태 아이콘"
               />
             </button>
@@ -82,7 +83,7 @@ export default function Login() {
             aria-label="구글 로그인"
           >
             <img
-              src="../images/social/google-logo.png"
+              src="/images/social/google-logo.png"
               alt="구글 로그인"
               width="42"
             />
@@ -94,7 +95,7 @@ export default function Login() {
             aria-label="카카오톡 로그인"
           >
             <img
-              src="../images/social/kakao-logo.png"
+              src="/images/social/kakao-logo.png"
               alt="카카오톡 로그인"
               width="42"
             />

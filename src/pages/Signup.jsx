@@ -44,7 +44,7 @@ export default function Signup() {
     <main className="auth-container">
       <div className="logo-home-button-wrapper">
         <a href="/">
-          <img src="../images/logo/logo.svg" alt="판다마켓 홈" width="396" />
+          <img src="/images/logo/logo.svg" alt="판다마켓 홈" width="396" />
         </a>
       </div>
 
@@ -88,7 +88,7 @@ export default function Signup() {
               aria-label="비밀번호 보기"
             >
               <img
-                src="../images/icons/eye-invisible.svg"
+                src="/images/icons/eye-invisible.svg"
                 alt="비밀번호 숨김 상태 아이콘"
               />
             </button>
@@ -111,7 +111,7 @@ export default function Signup() {
               aria-label="비밀번호 보기"
             >
               <img
-                src="../images/icons/eye-invisible.svg"
+                src="/images/icons/eye-invisible.svg"
                 alt="비밀번호 숨김 상태 아이콘"
               />
             </button>
